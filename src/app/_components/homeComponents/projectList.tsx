@@ -1,72 +1,66 @@
-"use client";
-import dynamic from "next/dynamic";
-import ProjectCard from "../cardComponents/ProjectCard";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import Image from "next/image";
-type Project = {
-  title: string;
+import Link from "next/link";
+
+export class Project {
   img: string;
-  desc?: string;
-  github?: string;
-  website?: string;
-};
-type Props = { projects: Project[] };
-const Modal = dynamic(() => import("../modalComponents/modal"), { ssr: false });
-const Link = dynamic(() => import("next/link"));
+  title: string;
+  desc: string;
+  github: string;
+  website: string;
 
-export default function ProjectList({ projects }: Props) {
-  const [project, setProject] = useState<Project | null>(null);
+  constructor(
+    img: string,
+    title: string,
+    desc: string,
+    github: string,
+    website: string
+  ) {
+    this.img = img;
+    this.title = title;
+    this.desc = desc;
+    this.github = github;
+    this.website = website;
+  }
+}
+
+export function ProjectCard({ p }: { p: Project }) {
   return (
-    <>
-      {project && (
-        <Modal
-          active={Boolean(project)}
-          close={() => {
-            setProject(null);
-          }}
+    <Drawer>
+      <DrawerTrigger>
+        <Card
+          data-aos="fade-right"
+          className="w-full p-2 hover:border-green-800 border-2"
         >
-          <div className="max-h-[80%] overflow-auto">
-            <h1 className="font-bold text-xl text-center">{project.title}</h1>
-            <div className="relative w-full aspect-[16/9] aspect">
-              <Image src={project.img} fill alt="projectImage" />
-            </div>
-            <div className="flex justify-evenly">
-              {project.github && (
-                <Link
-                  target="_blank"
-                  href={project.github}
-                  className="hover:text-black text-blue-700 font-semibold"
-                >
-                  github
-                </Link>
-              )}
-              {project.website && (
-                <Link
-                  target="_blank"
-                  href={project.website}
-                  className="hover:text-black text-blue-700 font-semibold"
-                >
-                  website
-                </Link>
-              )}
-            </div>
-            <p className="my-4">{project.desc}</p>
-          </div>
-        </Modal>
-      )}
+          <Image src={p.img} height={12800} width={12800} alt={p.title} />
+          <h3 className="text-center font-bold my-2">{p.title}</h3>
+        </Card>
+      </DrawerTrigger>
 
-      <div className="w-full p-4 grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-        {projects.map((e, i) => (
-          <ProjectCard
-            key={i}
-            imgUrl={e.img}
-            projectTitle={e.title}
-            onClick={() => {
-              setProject(e);
-            }}
-          />
-        ))}
-      </div>
-    </>
+      <DrawerContent className="items-center px-4">
+        <DrawerHeader>{p.title}</DrawerHeader>
+        <DrawerDescription>{p.desc}</DrawerDescription>
+        <DrawerFooter className="py-4 flex flex-row">
+          <Link href={p.github}>
+            <Button>Github</Button>
+          </Link>
+          {p.website && (
+            <Link href={p.website} target="_blank">
+              <Button>Website</Button>
+            </Link>
+          )}
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }

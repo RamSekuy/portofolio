@@ -3,9 +3,15 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="w-full py-4 bg-gradient-to-br from-black via-blue-200 to-blue-200">
+    <section
+      id="home"
+      className="w-full py-4 bg-gradient-to-br from-black via-blue-200 to-blue-200"
+    >
       <div className="w-full flex flex-col md:flex-row px-4 md:px-0 gap-y-12">
-        <div className="w-[50%] md:w-[60%] m-auto aspect-square relative rounded-full md:rounded-l-none overflow-hidden shadow-xl">
+        <div
+          data-aos="fade-right"
+          className="w-[50%] md:w-[60%] m-auto aspect-square relative rounded-full md:rounded-l-none overflow-hidden shadow-xl"
+        >
           <Image
             fill
             sizes="auto"
@@ -16,15 +22,18 @@ export default function Hero() {
           />
         </div>
         <div className="w-full text-center flex flex-col justify-center items-center gap-y-3">
-          <div>
+          <div data-aos="zoom-in">
             <h1 className="font-bold text-2xl">Rama Naufal Alim</h1>
             <h1 className="font-bold text-2xl">Fullstack Web Developer</h1>
+            <h2 className="px-4">
+              Hi, I am Ranma Naufal Alim. I am full-stack web developer from
+              Indonesia.
+            </h2>
           </div>
-          <h2 className="px-4">
-            Hi, I am Ranma Naufal Alim. I am full-stack web developer from
-            Indonesia.
-          </h2>
-          <div className="w-full flex gap-3 justify-center font-semibold">
+          <div
+            data-aos="fade-up"
+            className="w-full flex gap-3 justify-center font-semibold"
+          >
             <Link
               href="#projects"
               className="bg-blue-900 border-black border-2 p-3 rounded-full text-white"

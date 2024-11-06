@@ -1,6 +1,6 @@
 import Hero from "./_components/homeComponents/Hero";
 import AboutMe from "./_components/homeComponents/AboutMe";
-import Project from "./_components/homeComponents/Project";
+import ProjectSection from "./_components/homeComponents/ProjectSection";
 import Contact from "./_components/homeComponents/Contact";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <main className="w-full *:px-2 md:*:px-0">
       <Hero />
       <AboutMe />
-      <Project />
+      <ProjectSection />
       <Contact />
     </main>
   );
