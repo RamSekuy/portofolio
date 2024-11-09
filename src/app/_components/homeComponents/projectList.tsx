@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -17,14 +16,14 @@ export class Project {
   title: string;
   desc: string;
   github: string;
-  website: string;
+  website?: string;
 
   constructor(
     img: string,
     title: string,
     desc: string,
     github: string,
-    website: string
+    website?: string
   ) {
     this.img = img;
     this.title = title;
@@ -40,15 +39,20 @@ export function ProjectCard({ p }: { p: Project }) {
       <DrawerTrigger>
         <Card
           data-aos="fade-right"
-          className="w-full p-2 hover:border-green-800 border-2"
+          className="w-full hover:border-green-800 border-2 h-[168px] sm:h-[240px] xl:h-[240px] 2xl:h-[360px] aspect-video rounded-md overflow-hidden"
         >
-          <Image src={p.img} height={12800} width={12800} alt={p.title} />
-          <h3 className="text-center font-bold my-2">{p.title}</h3>
+          <Image
+            src={p.img}
+            fill
+            sizes="100%"
+            objectFit="contain"
+            alt={p.title}
+          />
         </Card>
       </DrawerTrigger>
 
       <DrawerContent className="items-center px-4">
-        <DrawerHeader>{p.title}</DrawerHeader>
+        <DrawerHeader className="font-bold">{p.title}</DrawerHeader>
         <DrawerDescription>{p.desc}</DrawerDescription>
         <DrawerFooter className="py-4 flex flex-row">
           <Link href={p.github}>

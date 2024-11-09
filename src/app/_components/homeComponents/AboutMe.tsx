@@ -44,17 +44,18 @@ export default function AboutMe() {
 
 function SkillsComponent() {
   const skills = [
-    "Html",
-    "Css",
+    "Html & css",
     "Javascript",
     "Typescript",
+    "C#",
+    "Dart",
     "React",
     "Next",
+    "Flutter",
     "Express",
     "Prisma",
     "Socket IO",
     "MySQL",
-    "C#",
   ];
   return (
     <div className="w-full *:mx-4 flex flex-col items-center py-4">
